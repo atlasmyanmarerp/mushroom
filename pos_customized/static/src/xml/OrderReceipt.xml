@@ -9,4 +9,52 @@
         </xpath>
     </t>
 
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('header-row')]//div[@name='delete']" position="before">
+            <div class="col start" name="table">Table</div>
+            <div t-if="filter === 'AllOrders'" class="col end narrow" name="tip">Tip</div>
+        </xpath>
+        <xpath expr="//div[hasclass('header-row')]" position="attributes">
+            <attribute name="t-if">filter != 'All Orders'</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('header-row')]" position="after">
+            <div t-if="filter == 'All Orders'" class="header-row">
+                <div class="col start wide">Date</div>
+                <div class="col start wide">Receipt Number</div>
+                <div class="col start wide">Customer</div>
+                <div class="col start wide">Employee</div>
+                <div class="col end narrow">Total</div>
+                <div class="col center very-narrow" name="edit"></div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('order-row')]" position="attributes">
+            <attribute name="t-if">filter != 'All Orders'</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('order-row')]" position="after">
+            <div t-if="filter == 'All Orders'" class="order-row pointer">
+                <div class="col start wide">
+                    <t t-esc="order.date_order"></t>
+                </div>
+                <div class="col start wide">
+                    <t t-esc="order.pos_reference"></t>
+                </div>
+                <div class="col start wide">
+                    <t t-esc="order.partner_id[1]"></t>
+                </div>
+                <div class="col start wide">
+                    <t t-esc="order.config_id[1]"></t>
+                </div>
+                <div class="col end narrow">
+                    <t t-esc="order.amount_total.toFixed(2)"></t>
+                </div>
+                <div class="col center very-narrow edit-button" style="margin-left: 10px; margin-right: 10px;">
+                    <i aria-hidden="true" class="fa fa-edit" t-on-click="addOrderToCart(order)"></i>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('buttons')]" position="inside">
+            <button class="settle-tips" t-if="filter === 'AllOrders'" t-on-click="settleTips">Fetch Orders</button>
+        </xpath>
+    </t>
+
 </templates>
