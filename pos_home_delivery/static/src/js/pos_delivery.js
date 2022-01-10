@@ -16,13 +16,13 @@ odoo.define('pos_home_delivery.pos_delivery', function (require) {
 				self.product_delivery = product_delivery;
 				self.get_products = [];
 				self.get_products_by_id = [];
-			},   
+			},
 		});
 
 
 	var _super_posmodel = models.PosModel.prototype;
 	models.PosModel = models.PosModel.extend({
-		
+
 		initialize: function (session, attributes) {
 			var product_model = _.find(this.models, function(model){ return model.model === 'res.partner'; });
 			product_model.fields.push('street2');
@@ -31,7 +31,7 @@ odoo.define('pos_home_delivery.pos_delivery', function (require) {
 			payment_method.fields.push('is_home_delivery');
 			return _super_posmodel.initialize.call(this, session, attributes);
 		},
-		
+
 	});
 
 	var posorder_super = models.Order.prototype;
@@ -109,7 +109,7 @@ odoo.define('pos_home_delivery.pos_delivery', function (require) {
 			json.street = this.get_div_street();
 			json.city = this.get_div_city();
 			json.zip = this.get_div_zip();
-			json.delivery_date = this.get_delivery_date();
+			json.delivery_date = json.delivery_date || this.get_delivery_date();
 			json.person_id = this.get_div_person();
 			json.order_note = this.get_div_note();
 			json.delivery = this.get_delivery_status();
@@ -119,7 +119,7 @@ odoo.define('pos_home_delivery.pos_delivery', function (require) {
 			posorder_super.init_from_JSON.apply(this,arguments);
 			this.set_delivery_data(json);
 			this.delivery = json.delivery;
-			
+
 		},
 	});
 

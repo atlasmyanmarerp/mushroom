@@ -62,11 +62,13 @@ class PosOrderReturn(models.Model):
             updated_lines = ui_order['lines']
             ret = 0
             qty = 0
-            for uptd in updated_lines:
-                line = self.env['pos.order.line'].search([('order_id', '=', parent_order.id),
-                                                           ('id', '=', uptd[2]['line_id'])], limit=1)
-                if line:
-                    line.returned_qty += -(uptd[2]['qty'])
+            for _, _, order_lines in updated_lines:
+                line_id = order_lines.get('line_id')
+                if line_id:
+                    domain = [('order_id', '=', parent_order.id), ('id', '=', int(line_id))]
+                    line = self.env['pos.order.line'].search(domain, limit=1)
+                    if line:
+                        line.returned_qty += -(order_lines.get('qty', 0))
             for line in parent_order.lines:
                 qty += line.qty
                 ret += line.returned_qty
