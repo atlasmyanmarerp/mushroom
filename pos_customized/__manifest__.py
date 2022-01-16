@@ -9,7 +9,11 @@
     'author': 'Mohit Ghodasara',
     'support': 'Mohit.Ghodasara@Yahoo.com',
     'description': 'Customized Point of Sale',
+<<<<<<< HEAD
+    'depends': ['point_of_sale','mushroom_customize'],
+=======
     'depends': ['point_of_sale'],
+>>>>>>> 579b8bc3cd62264aabe7b84dd11231ea27ca4dfb
     'data': [
         'views/point_of_sale_view.xml',
     ],
