@@ -10,6 +10,7 @@
     'support': 'Mohit.Ghodasara@Yahoo.com',
     'description': 'Customized Point of Sale',
     'depends': ['point_of_sale','mushroom_customize'],
+
     'data': [
         'views/point_of_sale_view.xml',
     ],
