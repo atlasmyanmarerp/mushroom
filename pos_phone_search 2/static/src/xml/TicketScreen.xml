@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template id="template" xml:space="preserve">
+
+    <t t-name="PosPhoneSearch" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@name='table']" position="replace">
+
+        </xpath>
+        <xpath expr="//div[hasclass('header-row')][2]/div[hasclass('start')][3]" position="after">
+             <div class="col start wide">Phone</div>
+        </xpath>
+        <xpath expr="//div[hasclass('order-row')][2]/div[hasclass('start')][3]" position="after">
+             <div class="col start wide">
+                 <t t-esc="order.partner_phone"/>
+             </div>
+        </xpath>
+    </t>
+</template>
