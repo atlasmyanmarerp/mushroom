@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_enhancement.ClientDetailsEdit" t-inherit="point_of_sale.ClientDetailsEdit"
+       t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('client-details-right')]" position="inside">
+            <div class="client-detail">
+                <span class="label">Township</span>
+                <select name='township_id' class="detail client-address-township" t-on-change="captureChange"
+                        placeholder="Township">
+                    <t t-foreach="env.pos.partner_township" t-as="partner_township_rec">
+                        <t t-if="props.partner.township_id &amp;&amp; props.partner.township_id[0] == partner_township_rec['id']">
+                            <option selected='selected' t-att-value="partner_township_rec['id']"
+                                    style="width: 100%;white-space: nowrap;text-overflow: ellipsis;"><t t-esc="partner_township_rec['name']"/></option>
+                        </t>
+                        <t t-else="">
+                            <option t-att-value="partner_township_rec['id']"
+                                    style="width: 100%;white-space: nowrap;text-overflow: ellipsis;"><t t-esc="partner_township_rec['name']"/></option>
+                        </t>
+
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </t>
+</templates>
