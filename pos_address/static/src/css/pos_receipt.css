@@ -1,0 +1,42 @@
+.pos .pos-receipt-container > div {
+    text-align: left;
+    width: 300px;
+    background-color: white;
+    margin: 20px;
+    padding: 15px;
+    font-size: 15px;
+    padding-bottom:30px;
+    display: inline-block;
+    border: solid 1px rgb(220,220,220);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.pos-receipt .pos-header{
+    text-align: center;
+    font-size: 125%;
+}
+
+.pos-receipt .pos-receipt-amount {
+    font-size: 125%;
+    padding-left: 0em;
+}
+.pos-receipt .pos-receipt-left-padding {
+    padding-left: 0em;
+}
+.pos-receipt .pos-client-phone {
+    font-size: 125%;
+}
+
+.pos-receipt .pos-client-name {
+    font-size: 110%;
+}
+.pos-receipt .price-right {
+    text-align: right;
+}
+.pos-receipt .quantity {
+    text-align: left;
+    width: 70px;
+}
+.pos-receipt .product {
+    text-align: left;
+}
