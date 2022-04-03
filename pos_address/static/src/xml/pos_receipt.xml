@@ -7,12 +7,12 @@
                     <div>Phone Order-Pay on Delivery</div>
                     <div><b><span t-esc="receipt.name" /></b></div>
                 </div>
-                <div>----------------------------------------------------------</div>
+                <div>---------------------------------------------------------</div>
                 <div class="pos-header">
                     <b>Mushroom Kitchen</b>
                 </div>
                 
-                <div>----------------------------------------------------------</div>
+                <div>---------------------------------------------------------</div>
                 <div>
                         Order Time
                         <t t-if="receipt.date.localestring">
@@ -26,7 +26,7 @@
                         Waiter
                         <span t-esc="receipt.cashier" class="pos-receipt-right-align"/>
                     </div>
-                <div>----------------------------------------------------------</div>
+                <div>---------------------------------------------------------</div>
                 <t t-if='receipt.client'>
                     <div>
                         <t t-if="receipt.client.phone">
@@ -44,7 +44,7 @@
                         </t>
                     </div>
                 </t>
-                <div>----------------------------------------------------------</div>
+                <div>---------------------------------------------------------</div>
                 <!-- Orderlines -->
                 <div class="orderlines">
                 <table style="width:100%">
@@ -77,6 +77,8 @@
                                 </t>
                            
                         </t>
+                        <br/>
+                        <!-- Note:<span t-esc="line.note"/> -->
                         </td>
                         <t t-if="line.discount !== 0">
                             <td>
@@ -117,16 +119,21 @@
                 </t>
 
                 <!-- Total -->
-                <div>----------------------------------------------------------</div>
+                <div>---------------------------------------------------------</div>
                 <div class="pos-receipt-amount">
                     <b>Amount</b>
                     <b><span t-esc="env.pos.format_currency(receipt.total_with_tax)" class="pos-receipt-right-align"/></b>
                 </div>
-                <div>----------------------------------------------------------</div>
-
+                <div>---------------------------------------------------------</div>
+                <div>
+                Delivery Date: <span t-esc="receipt.delivery_date_with_day_name" class="pos-receipt-right-align"/>
                 <!-- Extra Payment Info -->
-
-                
+                </div>
+                <div>
+                    <t t-if="receipt.wv_note">
+                    Note: <span t-esc="receipt.wv_note" class="pos-receipt-right-align"/>
+            </t>
+                    </div>
                 <div class="before-footer" />
 
                 <!-- Footer -->
